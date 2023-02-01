@@ -12,11 +12,11 @@ class SlackService
 
     private static string $text;
 
-    private static string $defaultHook;
+    private static string $defaultHook = '';
 
-    private static string $errorHook;
+    private static string $errorHook = '';
 
-    private static string $devHook;
+    private static string $devHook = '';
 
     public static function send(string $subject, string $message, ?string $webhook = null): void
     {
@@ -60,7 +60,7 @@ class SlackService
         self::$errorHook = config('slack_laravel.error');
         self::$devHook = config('slack_laravel.dev');
 
-        if (self::areHooksValid()) {
+        if (!self::areHooksValid()) {
             throw new SlackException('Hooks are not properly defined');
         }
     }
