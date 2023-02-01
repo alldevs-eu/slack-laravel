@@ -10,7 +10,7 @@
 <p>Then publish the config file and adjust it as you need it:</p>
 
 ```sh
-   php artisan migrate vendor:publish --provider="MHMartinez\SlackLaravel\Providers\SlackLaravelServiceProvider"
+   php artisan vendor:publish --provider="MHMartinez\SlackLaravel\Providers\SlackLaravelServiceProvider"
 ```
 
 <p>By default, it supports 3 channels:</p>

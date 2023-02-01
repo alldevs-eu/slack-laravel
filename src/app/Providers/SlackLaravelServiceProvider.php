@@ -13,4 +13,11 @@ class SlackLaravelServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/slack_laravel.php' => config_path('slack_laravel.php'),
         ], 'config');
     }
+
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/slack_laravel.php', 'slack_laravel'
+        );
+    }
 }
