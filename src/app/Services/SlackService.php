@@ -61,7 +61,7 @@ class SlackService
         self::$devHook = config('slack_laravel.dev');
 
         if (!self::areHooksValid()) {
-            throw new SlackException('Hooks are not properly defined');
+            throw new SlackException('Invalid hooks. Please, make sure you publish your config file and set them properly.');
         }
     }
 
