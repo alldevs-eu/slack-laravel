@@ -32,13 +32,15 @@ class SlackService
 
     private static function init(string $subject, string $message, ?string $webhook = null): void
     {
-        $webhook ??= config('slack_laravel.default');
+        self::loadHooks();
+
+        $webhook ??= self::$defaultHook;
 
         self::$webhook = App::isProduction()
             ? $webhook
-            : config('slack_laravel.dev');
+            : self::$devHook;
 
-        $channel = $webhook === config('slack_laravel.default') ? 'DEFAULT' : 'ERROR';
+        $channel = $webhook === self::$defaultHook ? 'DEFAULT' : 'ERROR';
 
         self::$text = App::isProduction()
             ? '*' . $subject . ':* ' . PHP_EOL . $message
@@ -48,7 +50,7 @@ class SlackService
     /**
      * @throws SlackException
      */
-    private function loadHooks(): void
+    private static function loadHooks(): void
     {
         if (self::areHooksValid()) {
             return;
