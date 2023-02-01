@@ -1,0 +1,36 @@
+{
+  "name": "maurohmartinez/slack-laravel",
+  "description": "A simple package to send notifications to Slack channels.",
+  "type": "library",
+  "require": {
+    "php": "^7.4|^8.0",
+    "laravel/framework": "^8.0.0|^9.0.0"
+  },
+  "keywords": [
+    "laravel",
+    "slack"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "maurohmartinez",
+      "email": "maurohmartinez@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "MHMartinez\\SlackLaravel\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MHMartinez\\SlackLaravel\\app\\Providers\\SlackLaravelServiceProvider"
+      ],
+      "aliases": {
+        "SlackLaravel": "MHMartinez\\SlackLaravel\\Facade"
+      }
+    }
+  }
+}
