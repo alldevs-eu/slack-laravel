@@ -2,6 +2,7 @@
 
 namespace MHMartinez\SlackLaravel\app\Providers;
 
+use App\Console\Commands\TestSlackCommand;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
 
@@ -12,6 +13,12 @@ class SlackLaravelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/slack_laravel.php' => config_path('slack_laravel.php'),
         ], 'config');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                TestSlackCommand::class,
+            ]);
+        }
     }
 
     public function register(): void
