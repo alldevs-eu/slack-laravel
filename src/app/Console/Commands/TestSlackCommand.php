@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace MHMartinez\SlackLaravel\app\Console\Commands;
 
 use Illuminate\Console\Command;
 use MHMartinez\SlackLaravel\app\Services\SlackService;

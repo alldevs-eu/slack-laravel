@@ -2,9 +2,9 @@
 
 namespace MHMartinez\SlackLaravel\app\Providers;
 
-use App\Console\Commands\TestSlackCommand;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
+use MHMartinez\SlackLaravel\app\Console\Commands\TestSlackCommand;
 
 class SlackLaravelServiceProvider extends ServiceProvider
 {
