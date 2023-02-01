@@ -4,7 +4,7 @@
 <p>Simply run the following command to install:</p>
 
 ```sh
-   composer install maurohmartinez/slack-laravel
+   composer require maurohmartinez/slack-laravel
 ```
 
 <p>Then publish the config file and adjust it as you need it:</p>
