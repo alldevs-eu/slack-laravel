@@ -15,7 +15,8 @@ class TestSlackCommand extends Command
     {
         $type = $this->askWithCompletion('Where do you want to send this test message?', ['default', 'error']);
         $msg = $this->ask('Type your message...');
+        $method  = $type === 'default' ? 'send' : 'error';
 
-        SlackService::send('Test message', $msg, config('slack_laravel.' . $type));
+        SlackService::$method('Test message', $msg);
     }
 }
