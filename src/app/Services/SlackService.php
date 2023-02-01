@@ -66,7 +66,7 @@ class SlackService
     private static function areHooksValid(): bool
     {
         return filter_var(self::$defaultHook, FILTER_VALIDATE_URL)
-            || filter_var(self::$errorHook, FILTER_VALIDATE_URL)
-            || filter_var(self::$devHook, FILTER_VALIDATE_URL);
+            && filter_var(self::$errorHook, FILTER_VALIDATE_URL)
+            && filter_var(self::$devHook, FILTER_VALIDATE_URL);
     }
 }
