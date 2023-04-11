@@ -1,10 +1,10 @@
 <?php
 
-namespace MHMartinez\SlackLaravel\app\Services;
+namespace DigitalPulse\SlackLaravel\app\Services;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use MHMartinez\SlackLaravel\app\Exceptions\SlackException;
+use DigitalPulse\SlackLaravel\app\Exceptions\SlackException;
 
 class SlackService
 {
@@ -16,6 +16,8 @@ class SlackService
 
     private static string $errorHook = '';
 
+    private static string $deployHook = '';
+
     private static string $devHook = '';
 
     public static function send(string $subject, string $message, ?string $webhook = null): void
@@ -23,6 +25,11 @@ class SlackService
         self::init($subject, $message, $webhook);
 
         Http::acceptJson()->post(self::$webhook, ['text' => self::$text]);
+    }
+
+    public static function deploy(string $subject, string $message): void
+    {
+        self::send($subject, $message, config('slack_laravel.deploy'));
     }
 
     public static function error(string $subject, string $message): void
@@ -58,6 +65,7 @@ class SlackService
 
         self::$defaultHook = config('slack_laravel.default');
         self::$errorHook = config('slack_laravel.error');
+        self::$deployHook = config('slack_laravel.deploy');
         self::$devHook = config('slack_laravel.dev');
 
         if (!self::areHooksValid()) {
@@ -69,6 +77,7 @@ class SlackService
     {
         return filter_var(self::$defaultHook, FILTER_VALIDATE_URL)
             && filter_var(self::$errorHook, FILTER_VALIDATE_URL)
+            && filter_var(self::$deployHook, FILTER_VALIDATE_URL)
             && filter_var(self::$devHook, FILTER_VALIDATE_URL);
     }
 }

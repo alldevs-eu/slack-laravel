@@ -12,7 +12,7 @@
 <p>Then publish the config file and adjust it as you need it:</p>
 
 ```sh
-   php artisan vendor:publish --provider="MHMartinez\SlackLaravel\app\Providers\SlackLaravelServiceProvider"
+   php artisan vendor:publish --provider="DigitalPulse\SlackLaravel\app\Providers\SlackLaravelServiceProvider"
 ```
 
 # How to use it

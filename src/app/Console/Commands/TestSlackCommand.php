@@ -1,9 +1,9 @@
 <?php
 
-namespace MHMartinez\SlackLaravel\app\Console\Commands;
+namespace DigitalPulse\SlackLaravel\app\Console\Commands;
 
 use Illuminate\Console\Command;
-use MHMartinez\SlackLaravel\app\Services\SlackService;
+use DigitalPulse\SlackLaravel\app\Services\SlackService;
 
 class TestSlackCommand extends Command
 {

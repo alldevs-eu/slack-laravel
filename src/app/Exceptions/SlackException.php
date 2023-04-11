@@ -1,6 +1,6 @@
 <?php
 
-namespace MHMartinez\SlackLaravel\app\Exceptions;
+namespace DigitalPulse\SlackLaravel\app\Exceptions;
 
 use Exception;
 
