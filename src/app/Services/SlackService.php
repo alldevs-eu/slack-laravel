@@ -47,7 +47,11 @@ class SlackService
             ? $webhook
             : self::$devHook;
 
-        $channel = $webhook === self::$defaultHook ? 'DEFAULT' : 'ERROR';
+        $channel = match ($webhook) {
+            self::$defaultHook => 'DEFAULT',
+            self::$deployHook => 'DEPLOY',
+            default => 'ERROR',
+        };
 
         self::$text = App::isProduction()
             ? '*' . $subject . ':* ' . PHP_EOL . $message
