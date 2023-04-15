@@ -4,7 +4,6 @@ namespace DigitalPulse\SlackLaravel\app\Services;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use DigitalPulse\SlackLaravel\app\Exceptions\SlackException;
 
 class SlackService
 {
@@ -50,38 +49,24 @@ class SlackService
         $channel = match ($webhook) {
             self::$defaultHook => 'DEFAULT',
             self::$deployHook => 'DEPLOY',
-            default => 'ERROR',
+            self::$errorHook => 'ERROR',
+            default => null,
         };
+
+        if (!$channel) {
+            return;
+        }
 
         self::$text = App::isProduction()
             ? '*' . $subject . ':* ' . PHP_EOL . $message
             : '*' . $channel . ' — ' . $subject . ':* ' . PHP_EOL . $message;
     }
 
-    /**
-     * @throws SlackException
-     */
     private static function loadHooks(): void
     {
-        if (self::areHooksValid()) {
-            return;
-        }
-
-        self::$defaultHook = config('slack_laravel.default');
-        self::$errorHook = config('slack_laravel.error');
-        self::$deployHook = config('slack_laravel.deploy');
-        self::$devHook = config('slack_laravel.dev');
-
-        if (!self::areHooksValid()) {
-            throw new SlackException('Invalid hooks. Please, make sure you publish your config file and set them properly.');
-        }
-    }
-
-    private static function areHooksValid(): bool
-    {
-        return filter_var(self::$defaultHook, FILTER_VALIDATE_URL)
-            && filter_var(self::$errorHook, FILTER_VALIDATE_URL)
-            && filter_var(self::$deployHook, FILTER_VALIDATE_URL)
-            && filter_var(self::$devHook, FILTER_VALIDATE_URL);
+        self::$defaultHook = config('slack_laravel.default', '');
+        self::$errorHook = config('slack_laravel.error', '');
+        self::$deployHook = config('slack_laravel.deploy', '');
+        self::$devHook = config('slack_laravel.dev', '');
     }
 }
