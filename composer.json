@@ -1,5 +1,5 @@
 {
-  "name": "digital-pulse-lv/slack-laravel",
+  "name": "alldevs-eu/slack-laravel",
   "description": "A simple package to send notifications to Slack channels.",
   "type": "library",
   "require": {
@@ -20,16 +20,16 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "DigitalPulse\\SlackLaravel\\": "src/"
+      "AllDevs\\SlackLaravel\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "DigitalPulse\\SlackLaravel\\app\\Providers\\SlackLaravelServiceProvider"
+        "AllDevs\\SlackLaravel\\app\\Providers\\SlackLaravelServiceProvider"
       ],
       "aliases": {
-        "SlackLaravel": "DigitalPulse\\SlackLaravel\\Facade"
+        "SlackLaravel": "AllDevs\\SlackLaravel\\Facade"
       }
     }
   }

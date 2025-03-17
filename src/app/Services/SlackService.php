@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalPulse\SlackLaravel\app\Services;
+namespace AllDevs\SlackLaravel\app\Services;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;

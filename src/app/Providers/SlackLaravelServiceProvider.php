@@ -1,10 +1,10 @@
 <?php
 
-namespace DigitalPulse\SlackLaravel\app\Providers;
+namespace AllDevs\SlackLaravel\app\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
-use DigitalPulse\SlackLaravel\app\Console\Commands\TestSlackCommand;
+use AllDevs\SlackLaravel\app\Console\Commands\TestSlackCommand;
 
 class SlackLaravelServiceProvider extends ServiceProvider
 {
